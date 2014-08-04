@@ -3,7 +3,7 @@ package com.uidesigner.model;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 属性表模型.
  *

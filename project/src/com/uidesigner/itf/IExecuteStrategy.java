@@ -4,7 +4,7 @@
 package com.uidesigner.itf;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 执行策略.
  *

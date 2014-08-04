@@ -11,7 +11,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * @author zhaoshb
  * @since 1.0

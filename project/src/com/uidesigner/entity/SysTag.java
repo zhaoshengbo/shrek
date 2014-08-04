@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 /**
  *
- * Sherk.
+ * Shrek.
  *
  * 系统标签.
  *

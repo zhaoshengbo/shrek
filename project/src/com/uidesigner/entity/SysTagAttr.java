@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 标签属性.
  *

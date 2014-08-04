@@ -4,7 +4,7 @@ import com.uidesigner.dao.BaseDAO;
 import com.uidesigner.itf.IExecuteStrategy;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 窗口引导执行策略.
  *

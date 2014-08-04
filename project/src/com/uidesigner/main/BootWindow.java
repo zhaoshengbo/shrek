@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import com.uidesigner.itf.IExecuteStrategy;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 引导窗口.
  *

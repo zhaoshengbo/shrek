@@ -1,7 +1,7 @@
 package com.uidesigner.resource;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 资源类.
  *

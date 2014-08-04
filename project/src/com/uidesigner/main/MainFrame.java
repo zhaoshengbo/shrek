@@ -26,7 +26,7 @@ import com.uidesigner.model.UserAttrTableModel;
 import com.uidesigner.resource.UIResource;
 
 /**
- * Sherk.
+ * Shrek.
  *
  * 主框架结构.
  *
