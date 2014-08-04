@@ -7,6 +7,10 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -20,7 +24,12 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.WindowConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
+import com.uidesigner.dao.BaseDAO;
+import com.uidesigner.entity.SysTag;
+import com.uidesigner.entity.SysTagStruct;
 import com.uidesigner.model.ComAttrTableModel;
 import com.uidesigner.model.UserAttrTableModel;
 import com.uidesigner.resource.UIResource;
@@ -37,6 +46,10 @@ import com.uidesigner.resource.UIResource;
 public class MainFrame extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = -101078670847085168L;
+
+	private static final String ADD_TAG = "add_tag";
+
+	private static final String DEL_TAG = "del_tag";
 
 	private static final String USER_ADD_ATTR = "user_add_attr";
 
@@ -68,9 +81,19 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	}
 
+	@Override
+	public void setVisible(boolean b) {
+		super.setVisible(b);
+		this.initData();
+	}
+
 	protected void initUI() {
 		this.setFrameDefault();
 		this.addComps();
+	}
+
+	protected void initData() {
+		this.initTagTreeData();
 	}
 
 	protected void setFrameDefault() {
@@ -105,12 +128,34 @@ public class MainFrame extends JFrame implements ActionListener {
 		JPanel tagPanel = this.createTitledPanel(UIResource.getTagTreeText());
 		tagPanel.setLayout(new BorderLayout());
 
+		tagPanel.add(this.createTagBtnPanel(), BorderLayout.NORTH);
+		tagPanel.add(this.createTagTreeScrollPane());
+
+		return tagPanel;
+	}
+
+	protected JPanel createTagBtnPanel() {
+		JPanel newPanel = new JPanel();
+		newPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+		newPanel.add(this.createAddTagBtn());
+		newPanel.add(this.createDelTagBtn());
+
+		return newPanel;
+	}
+
+	protected JButton createAddTagBtn() {
+		return this.createButton(UIResource.getAddTagText(), MainFrame.ADD_TAG);
+	}
+
+	protected JButton createDelTagBtn() {
+		return this.createButton(UIResource.getDelTagText(), MainFrame.DEL_TAG);
+	}
+
+	protected JScrollPane createTagTreeScrollPane() {
 		JScrollPane scrollPane = this.createScrollPane();
 		scrollPane.getViewport().setView(this.getTagTree());
 
-		tagPanel.add(scrollPane);
-
-		return tagPanel;
+		return scrollPane;
 	}
 
 	protected JPanel createAttrEditPanel() {
@@ -226,9 +271,50 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected JTree createTagTree() {
 		JTree tree = new JTree();
+		tree.setRootVisible(false);
 		tree.setPreferredSize(new Dimension(250, 200));
 
 		return tree;
+	}
+
+	protected void initTagTreeData() {
+		DefaultTreeModel tagTreeModel = (DefaultTreeModel) this.getTagTree().getModel();
+		tagTreeModel.setRoot(this.getRootNode());
+	}
+
+	protected DefaultMutableTreeNode getRootNode() {
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode();
+		List<SysTag> tagList = this.qryAllTag();
+		Map<Long, SysTag> tagMap = this.getTagMap(tagList);
+		for (SysTag tag : tagList) {
+			this.createTreeNode(rootNode, tag, tagMap);
+		}
+		return rootNode;
+	}
+
+	protected Map<Long, SysTag> getTagMap(List<SysTag> tagList) {
+		Map<Long, SysTag> tagMap = new HashMap<Long, SysTag>();
+		for (SysTag sysTag : tagList) {
+			tagMap.put(sysTag.getTagId(), sysTag);
+		}
+		return tagMap;
+	}
+
+	protected void createTreeNode(DefaultMutableTreeNode pNode, SysTag tag, Map<Long, SysTag> tagMap) {
+		DefaultMutableTreeNode tagNode = new DefaultMutableTreeNode();
+		tagNode.setUserObject(tag);
+		pNode.add(tagNode);
+		Set<SysTagStruct> structSet = tag.getTagStructSet();
+		if (structSet.isEmpty()) {
+			return;
+		}
+		for (SysTagStruct tagStruct : structSet) {
+			this.createTreeNode(tagNode, tagMap.get(tagStruct.getTagId()), tagMap);
+		}
+	}
+
+	protected List<SysTag> qryAllTag() {
+		return BaseDAO.getInstance().loadAll(SysTag.class);
 	}
 
 	protected JMenu createSetMenu() {
@@ -252,7 +338,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		return this.userAttrEditTable;
 	}
 
-	public JTable getComAttrEditTable() {
+	protected JTable getComAttrEditTable() {
 		if (this.comAttrEditTable == null) {
 			this.comAttrEditTable = this.createComAttrEditTable();
 		}

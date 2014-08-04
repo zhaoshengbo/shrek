@@ -66,4 +66,12 @@ public class UIResource {
 	public static String getRefreshText() {
 		return "刷新";
 	}
+
+	public static String getAddTagText() {
+		return "新增标签";
+	}
+
+	public static String getDelTagText() {
+		return "删除标签";
+	}
 }
