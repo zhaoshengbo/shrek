@@ -1,12 +1,18 @@
 package com.uidesigner.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -36,6 +42,10 @@ public class SysTag implements Serializable {
 	@Column(name = "tag_type")
 	private String tagType = null;
 
+	@ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@JoinTable(name = "sys_tag_attr_rel", joinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagId") }, inverseJoinColumns = { @JoinColumn(name = "attr_id", referencedColumnName = "attrId") })
+	private Set<SysTagAttr> tagAttrSet = null;
+
 	public Long getTagId() {
 		return this.tagId;
 	}
@@ -58,6 +68,14 @@ public class SysTag implements Serializable {
 
 	public void setTagType(String tagType) {
 		this.tagType = tagType;
+	}
+
+	public Set<SysTagAttr> getTagAttrSet() {
+		return this.tagAttrSet;
+	}
+
+	public void setTagAttrSet(Set<SysTagAttr> tagAttrSet) {
+		this.tagAttrSet = tagAttrSet;
 	}
 
 }
