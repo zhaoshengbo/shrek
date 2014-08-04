@@ -69,8 +69,8 @@ public class BootWindow extends Window implements UncaughtExceptionHandler {
 	@Override
 	public void uncaughtException(Thread t, Throwable e) {
 		this.setMissionFailed(true);
-		this.getProgressBar().setBackground(Color.RED);
-		this.getInfoLabel().setText(e.getMessage());
+		this.getProgressBar().setForeground(Color.RED);
+		this.getInfoLabel().setText(e.getCause().getMessage());
 		this.addFailedMouseListener();
 	}
 
@@ -99,7 +99,7 @@ public class BootWindow extends Window implements UncaughtExceptionHandler {
 
 	protected JLabel createInfoLable() {
 		JLabel lable = new JLabel();
-		lable.setBounds(2, 211, 431, 15);
+		lable.setBounds(4, 211, 429, 15);
 		lable.setOpaque(false);
 
 		return lable;
@@ -131,7 +131,8 @@ public class BootWindow extends Window implements UncaughtExceptionHandler {
 
 	protected void exeWaiting(Thread thread, int sleepSeconds) {
 		try {
-			for (int i = 1; (i <= 100) && !this.isMissionFailed(); i++) {
+			int i = 1;
+			for (; (i <= 100) && !this.isMissionFailed(); i++) {
 				this.getProgressBar().setValue(i);
 				TimeUnit.MILLISECONDS.sleep(sleepSeconds);
 			}

@@ -1,6 +1,7 @@
 package com.uidesigner.main;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -18,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
+import javax.swing.WindowConstants;
 
 import com.uidesigner.model.ComAttrTableModel;
 import com.uidesigner.model.UserAttrTableModel;
@@ -73,7 +75,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected void setFrameDefault() {
 		this.setLayout(new BorderLayout());
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setTitle("UIDesigner");
 	}
@@ -123,6 +125,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	protected JPanel createSaveRefBtnPanel() {
 		JPanel btnPanel = new JPanel();
 		btnPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
+		btnPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		btnPanel.add(this.createSaveBtn());
 		btnPanel.add(this.createRefreshBtn());
 
