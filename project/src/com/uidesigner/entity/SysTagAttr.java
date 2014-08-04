@@ -26,7 +26,7 @@ public class SysTagAttr implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "tag_id")
+	@Column(name = "attr_id")
 	private Long attrId = null;
 
 	@Column(name = "attr_name")

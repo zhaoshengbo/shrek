@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -42,8 +43,12 @@ public class SysTag implements Serializable {
 	@Column(name = "tag_type")
 	private String tagType = null;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tag_id")
+	private SysTagStruct tagStruct = null;
+
 	@ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-	@JoinTable(name = "sys_tag_attr_rel", joinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagId") }, inverseJoinColumns = { @JoinColumn(name = "attr_id", referencedColumnName = "attrId") })
+	@JoinTable(name = "sys_tag_attr_rel", joinColumns = { @JoinColumn(name = "tagId", referencedColumnName = "tag_id") }, inverseJoinColumns = { @JoinColumn(name = "attrId", referencedColumnName = "attr_id") })
 	private Set<SysTagAttr> tagAttrSet = null;
 
 	public Long getTagId() {
@@ -68,6 +73,14 @@ public class SysTag implements Serializable {
 
 	public void setTagType(String tagType) {
 		this.tagType = tagType;
+	}
+
+	public SysTagStruct getTagStruct() {
+		return this.tagStruct;
+	}
+
+	public void setTagStruct(SysTagStruct tagStruct) {
+		this.tagStruct = tagStruct;
 	}
 
 	public Set<SysTagAttr> getTagAttrSet() {

@@ -1,0 +1,23 @@
+/**
+ *
+ */
+package com.uidesigner.impl;
+
+import com.uidesigner.itf.IExecuteStrategy;
+
+/**
+ * Sherk.
+ *
+ * 窗口引导执行策略.
+ *
+ * @author zhaoshb
+ * @since 1.0
+ * @time 2014年8月4日 下午9:03:07
+ */
+public class BootWinExeStrategy implements IExecuteStrategy {
+
+	@Override
+	public void run() {
+	}
+
+}

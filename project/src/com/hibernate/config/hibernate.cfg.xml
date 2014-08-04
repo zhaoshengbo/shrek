@@ -23,5 +23,7 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="hibernate.show_sql">true</property>
 		<mapping class="com.uidesigner.entity.SysTag" />
+		<mapping class="com.uidesigner.entity.SysTagAttr" />
+		<mapping class="com.uidesigner.entity.SysTagStruct" />
 	</session-factory>
 </hibernate-configuration>

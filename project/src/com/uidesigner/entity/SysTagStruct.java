@@ -2,6 +2,9 @@ package com.uidesigner.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,6 +19,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sys_tag_struct")
 public class SysTagStruct {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "struct_id")
+	private Long structId = null;
 
 	@Column(name = "tag_id")
 	private Long tagId = null;
