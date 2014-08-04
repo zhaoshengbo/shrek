@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.uidesigner.entity;
 
 import javax.persistence.Column;
