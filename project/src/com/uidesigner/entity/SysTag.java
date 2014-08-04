@@ -44,7 +44,7 @@ public class SysTag implements Serializable {
 	private String tagType = null;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tag_id")
+	@JoinColumn(name = "a_tag_id")
 	private SysTagStruct tagStruct = null;
 
 	@ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
