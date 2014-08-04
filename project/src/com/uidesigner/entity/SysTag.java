@@ -9,6 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ *
+ * Sherk.
+ *
+ * 系统标签.
+ *
+ * @author zhaoshb
+ * @since 1.0
+ * @time 2014年8月4日 上午9:30:29
+ */
 @Entity
 @Table(name = "sys_tag")
 public class SysTag implements Serializable {
