@@ -12,13 +12,14 @@ import javax.servlet.jsp.tagext.Tag;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
+ *
  * Shrek.
  *
- * ±êÇ©»ùÀà.
+ * åŸºç¡€æ ‡ç­¾ç±».
  *
  * @author zhaoshb
  * @since 1.0
- * @time 2014Äê8ÔÂ5ÈÕ ÏÂÎç8:53:31
+ * @time 2014å¹´8æœˆ5æ—¥ ä¸‹åˆ11:24:21
  */
 public abstract class BaseTag extends TagSupport {
 
