@@ -74,4 +74,8 @@ public class UIResource {
 	public static String getDelTagText() {
 		return "删除标签";
 	}
+
+	public static String getAddText() {
+		return "新增";
+	}
 }

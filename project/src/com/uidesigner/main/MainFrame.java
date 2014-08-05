@@ -119,9 +119,16 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected void addMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(this.createNewMenuBar());
 		menuBar.add(this.createSetMenu());
 		menuBar.add(this.createAboutMenu());
 		this.setJMenuBar(menuBar);
+	}
+
+	protected JMenu createNewMenuBar() {
+		JMenu menu = this.createMenu("");
+
+		return menu;
 	}
 
 	protected JPanel createTagPanel() {
