@@ -1,0 +1,4967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>stag</short-name>
+	<uri>https://github.com/zhaoshengbo/shrek/shrek-tag1.0</uri>
+
+	<!-- .................................................. label Begin .................................................. -->
+
+	<tag>
+		<name>table</name>
+		<tag-class>com.shrek.lf.taglib.TableTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				label标签例:<k:label text='system.User.userName'/>,
+				编译后将生成<label>用户名称</label>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>code</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>标签编码</description>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>label</name>
+		<tag-class>com.vip.lf.taglib.LabelTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				label标签例:<k:label text='system.User.userName'/>,
+				编译后将生成<label>用户名称</label>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>allowBlank</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否显示红色星号</description>
+		</attribute>
+		<attribute>
+			<name>showColon</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否显示冒号</description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>国际化Key,例如：system.User.userName</description>
+		</attribute>
+		<attribute>
+			<name>language</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>国际语言类型：默认 default,中文 zh_CN,英文 en</description>
+		</attribute>
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. label End .................................................. -->
+
+	<!-- .................................................. hidden Begin .................................................. -->
+	<tag>
+		<name>hidden</name>
+		<tag-class>com.vip.lf.taglib.HiddenTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				hidden标签例:<k:hidden property='userName'/>,
+				编译后将生成<input type="hidden" name="userName" id="userName"/>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<!-- end公共属性 -->
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. hidden End .................................................. -->
+
+	<!-- .................................................. text Begin .................................................. -->
+	<tag>
+		<name>text</name>
+		<tag-class>com.vip.lf.taglib.TextTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				text标签例:<k:text property='userName'/>,
+				编译后将生成<input type="text" name="userName" id="userName"/>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>为文本输入框或密码框指定最大允许字符长度(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置输入控件为只读(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设定输入框宽度</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>formatRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {trimBegin:true,//去前空格
+									trimEnd:true,//去后空格
+									trimBoth:true,//前后空格
+									trimAll:true,//去全部空格
+									toUpperCase:true,//转大写
+									toLowerCase:true,//转小写
+									currency:true,//货币格式
+									decimal:true,//格式化小数
+									checkedValueMap:{checked:true/1/yes/男,unChecked:false/0/no/女}}//针对单个checkbox时,选中值和反选值格式化 
+									number:true//只允许输入数字，不规定正负以及位数
+									number:{positive:false,intPart:1,decPart:0} //自定义number格式化规则，positive：是否只能输入整数，intPart：整数部分位数，decPart：小数部分位数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. text End .................................................. -->
+
+	<!-- .................................................. file Begin .................................................. -->
+	<tag>
+		<name>file</name>
+		<tag-class>com.vip.lf.taglib.FileTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				file标签例:<k:file property='fileName'/>,
+				编译后将生成<input type="file" name="userName" id="userName"/>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. file End .................................................. -->
+
+	<!-- .................................................. password Begin .................................................. -->
+	<tag>
+		<name>password</name>
+		<tag-class>com.vip.lf.taglib.PasswordTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				text标签例:<k:password property='userName'/>,
+				编译后将生成<input type="password" name="userPassword" id="userPassword"/>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>为文本输入框或密码框指定最大允许字符长度(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置输入控件为只读(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设定输入框宽度</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>formatRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {trimBegin:true,//去前空格
+									trimEnd:true,//去后空格
+									trimBoth:true,//前后空格
+									trimAll:true,//去全部空格
+									toUpperCase:true,//转大写
+									toLowerCase:true,//转小写
+									currency:true,//货币格式
+									decimal:true,//格式化小数
+									checkedValueMap:{checked:true/1/yes/男,unChecked:false/0/no/女}}//针对单个checkbox时,选中值和反选值格式化  
+									number:true//只允许输入数字，不规定正负以及位数
+									number:{positive:false,intPart:1,decPart:0} //自定义number格式化规则，positive：是否只能输入整数，intPart：整数部分位数，decPart：小数部分位数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. password End .................................................. -->
+
+	<!-- .................................................. radio Begin .................................................. -->
+	<tag>
+		<name>radio</name>
+		<tag-class>com.vip.lf.taglib.RadioTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				radio标签例:<k:radio property='userName' text="文本" value="值"/>,
+				编译后将生成<input type="radio" name="userName" id="userName" value="值">文本</input>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<attribute>
+			<name>checked</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指出在加载页面时是否将给定复选框或单选按钮置为选中状态(仅针对type="checkbox"或type="radio")
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指定元素的显示文本,例如:<input type="radio">text</input>
+				]]>
+			</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. radio End .................................................. -->
+
+	<!-- .................................................. checkbox Begin .................................................. -->
+	<tag>
+		<name>checkbox</name>
+		<tag-class>com.vip.lf.taglib.CheckBoxTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				checkbox标签例:<k:checkbox property='userName' text="文本" value="值"/>,
+				编译后将生成<input type="checkbox" name="userName" id="userName" value="值">文本</input>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<attribute>
+			<name>checked</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指出在加载页面时是否将给定复选框或单选按钮置为选中状态(仅针对type="checkbox"或type="radio")
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指定元素的显示文本,例如:<input type="checkbox">text</input>
+				]]>
+			</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>formatRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {trimBegin:true,//去前空格
+									trimEnd:true,//去后空格
+									trimBoth:true,//前后空格
+									trimAll:true,//去全部空格
+									toUpperCase:true,//转大写
+									toLowerCase:true,//转小写
+									currency:true,//货币格式
+									decimal:true,//格式化小数
+									checkedValueMap:{checked:true/1/yes/男,unChecked:false/0/no/女}}//针对单个checkbox时,选中值和反选值格式化  
+									number:true//只允许输入数字，不规定正负以及位数
+									number:{positive:false,intPart:1,decPart:0} //自定义number格式化规则，positive：是否只能输入整数，intPart：整数部分位数，decPart：小数部分位数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. checkbox End .................................................. -->
+
+	<!-- .................................................. date Begin .................................................. -->
+	<tag>
+		<name>date</name>
+		<tag-class>com.vip.lf.taglib.DateTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				date标签例:<k:date property='userBirthday'/>,
+				编译后将生成<input type="text" id="userBirthday" name="userBirthday" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" dateFormat="yyyy-MM-dd"/>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置输入控件为只读(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>doubleCalendar</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否显示双日期</description>
+		</attribute>
+		<attribute>
+			<name>dateFormat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					日期格式为空时,默认:yyyy-MM-dd
+							      其它格式:yyyy-MM-dd HH:mm:ss
+				]]>
+			</description>
+		</attribute>
+		<!-- 自定义属性 -->
+	</tag>
+	<!-- .................................................. date End .................................................. -->
+
+	<!-- .................................................. textarea Begin .................................................. -->
+	<tag>
+		<name>textarea</name>
+		<tag-class>com.vip.lf.taglib.TextAreaTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				text标签例:<k:textarea property='remark' rows="5" cols="10"/>,
+				编译后将生成<textarea rows="5" cols="10"></textarea>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>rows</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的行数</description>
+		</attribute>
+		<attribute>
+			<name>cols</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的列数</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置输入控件为只读(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>editor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					editor="fckeditor"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editorConfig</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[ 
+					editorConfig="{Width : '80%', Height : 200}"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>formatRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {trimBegin:true,//去前空格
+									trimEnd:true,//去后空格
+									trimBoth:true,//前后空格
+									trimAll:true,//去全部空格
+									toUpperCase:true,//转大写
+									toLowerCase:true,//转小写
+									currency:true,//货币格式
+									decimal:true,//格式化小数
+									checkedValueMap:{checked:true/1/yes/男,unChecked:false/0/no/女}}//针对单个checkbox时,选中值和反选值格式化  
+									number:true//只允许输入数字，不规定正负以及位数
+									number:{positive:false,intPart:1,decPart:0} //自定义number格式化规则，positive：是否只能输入整数，intPart：整数部分位数，decPart：小数部分位数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. textarea End .................................................. -->
+
+	<!-- .................................................. button Begin .................................................. -->
+	<tag>
+		<name>button</name>
+		<tag-class>com.vip.lf.taglib.ButtonTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			<![CDATA[
+				button标签例:<k:button styleId="searchBtn" text="button.search"/>,
+				编译后将生成<button id="searchBtn" type="button">查询</button>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					button,reset,submit 指定按钮的类型,为空时默认类型button
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					国际化Key,例如：
+					<k:button text="system.User.userName">
+					<button>text</button>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>viewId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				权限ID
+					命名规则:页面的id.按钮的id
+					例如:inbOrder.searchBtn
+					
+				]]>
+			</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. button End .................................................. -->
+
+	<!-- .................................................. select Begin .................................................. -->
+	<tag>
+		<name>select</name>
+		<tag-class>com.vip.lf.taglib.SelectTag</tag-class>
+		<body-content>JSP</body-content>
+		<description>
+			<![CDATA[
+				button标签例:<k:select property="userName"></k:select>,
+				编译后将生成<select id="userName" name="userName"></select>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>multiple</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定允许选择多个选项</description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置选择列表中可见选项的数目</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>获取选项数据的url,默认为urlPrefix(默认为空) +
+				/list.action,如果为空则不从后台获取选项。</description>
+		</attribute>
+		<attribute>
+			<name>urlPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>获取选项数据的url前缀,默认为空</description>
+		</attribute>
+		<attribute>
+			<name>valueField</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>option选项值的字段名，默认为'value'</description>
+		</attribute>
+		<attribute>
+			<name>displayField</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>option选项的显示字段名，默认为'title'</description>
+		</attribute>
+		<attribute>
+			<name>lazyInit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>是否初始不加载数据，默认为false</description>
+		</attribute>
+		<attribute>
+			<name>initValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>默认选中项的value值</description>
+		</attribute>
+		<attribute>
+			<name>setQueryInfo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					配置获取选项数据的QueryInfo的方法,
+					function setQueryInfo(){
+						return {
+							field:[fieldName:'',condition:'eq',fieldValueString:''],
+							entityAlias : "user",
+							whereCondition : "user.userId ='userIdValue'",
+							orderByProps : {userId:"desc",userName:"asc"},
+							groupByProps : ["userId","userName"]
+						};
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>textMaxLength</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>最大显示文本长度，为0时不限制，默认值为0</description>
+		</attribute>
+
+		<attribute>
+			<name>initDataType</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>标签加载数据类型,具体加载有业务实现</description>
+		</attribute>
+		<attribute>
+			<name>initDataKey</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+			<description>标签加载数据Key,具体加载有业务实现</description>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. select End .................................................. -->
+
+	<!-- .................................................. option Begin .................................................. -->
+	<tag>
+		<name>option</name>
+		<tag-class>com.vip.lf.taglib.OptionTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				option标签例:<k:option value='china' text='中国'/>,
+				编译后将生成<option value='china'>中国</option>原生html标签
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>text</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指定元素的显示文本,例如:<k:option value='china' text='中国'/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>selected</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定默认选中该选项,true,false</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. option End .................................................. -->
+
+	<!-- .................................................. optionsCollection 
+		Begin .................................................. -->
+	<tag>
+		<name>optionsCollection</name>
+		<tag-class>com.vip.lf.taglib.OptionsCollectionTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				optionsCollection标签例:
+					List list = new ArrayList();
+					User temp = new User();
+					temp.setUserName("名称");
+					temp.setUserId("Id");
+					list.add(temp);
+					
+					User temp2 = new User();
+					temp2.setUserName("名称2");
+					temp2.setUserId("Id2");
+					list.add(temp2);
+					
+					request.setAttribute("userList",list);
+					1,request中保存名为user的属性
+					2,标签代码为<k:optionsCollection name="userList" property="userName" label="userName" value="userId"/>,
+					3,编译后生成原生html代码<option value="Id">名称</option>,<option value="Id2">名称2</option>
+			]]>
+		</description>
+		<attribute>
+			<name>property</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>label</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>filter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					标签值应为HTML敏感字符进行过滤
+					('<'转"&lt;")('>'转"&gt;")('&'转"&amp;")('"'转"&quot;")('\''转"&#39;")
+				]]>
+			</description>
+		</attribute>
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. optionsCollection 
+		End .................................................. -->
+
+	<!-- .................................................. autoSelect Begin 
+		.................................................. -->
+	<tag>
+		<name>autoSelect</name>
+		<tag-class>com.vip.lf.taglib.AutoSelectTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				autoSelectConfig要配合autoSelect标签一起使用,以下场景;
+					autoSelectConfig标签例:<k:autoSelectConfig 
+											id="editUserName"
+											displayField="userName,userCode,birthDay" 
+											displayFieldI18n="system.User.userName,system.User.userCode,system.User.birthDay" 
+											queryField="userName,userCode" 
+											sortFields="userName|asc,userCode|desc" 
+											width="450" 
+											displayNum="8" 
+											canNotInput="true" 
+											autoFill="editUserName|{userName},hiddenUserId|{userId}" 
+											hiddenId="hiddenUserId" 
+											whereCondition="userCode='admin' or userName='用户'" 
+											url="${ctx}"/>,
+											
+					autoSelect标签例:<k:autoSelect property='userName' styleId='editUserName'/>
+									<k:hidden property='userId' styleId='hiddenUserId'/>
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>styleId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的唯一id</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指明元素的样式类名</description>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的内嵌样式</description>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>属性名称</description>
+		</attribute>
+		<attribute>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指出在加载页面时是否将给定输入控件设为禁用,true,false</description>
+		</attribute>
+		<attribute>
+			<name>maxlength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>为文本输入框或密码框指定最大允许字符长度(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					例如:
+					User temp = new User();
+					temp.setUserName("名称");
+					request.setAttribute("user",temp);
+					1,request中保存名为user的属性
+					2,标签代码为<k:text name="user" property="userName"/>,
+					3,编译后生成原生html代码<input type="text" name="userName" value="名称"/>
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置输入控件为只读(仅针对type=text或type=password)</description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设定输入框宽度</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定输入控件的值</description>
+		</attribute>
+		<attribute>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>设置访问元素的键盘快捷键</description>
+		</attribute>
+		<attribute>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素里内容的文本方向 rtl,ltr</description>
+		</attribute>
+		<attribute>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的Tab键顺序</description>
+		</attribute>
+		<attribute>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>指定元素的提示文本</description>
+		</attribute>
+		<!-- 事件 -->
+		<attribute>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素失去焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素值(即元素的value属性值)发生改变时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内单击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内双击鼠标(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当元素取得焦点时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内按下鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针在元素区域内移动时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移出元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当鼠标指针移入元素区域时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>在元素区域内松开鼠标键(不区分左右键)时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>按下并松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>松开一个键时执行脚本</description>
+		</attribute>
+		<attribute>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>当用户在文本框或多行文本框中选择文本时执行脚本</description>
+		</attribute>
+		<!-- end事件 -->
+		<!-- end公共属性 -->
+
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>formatRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {trimBegin:true,//去前空格
+									trimEnd:true,//去后空格
+									trimBoth:true,//前后空格
+									trimAll:true,//去全部空格
+									toUpperCase:true,//转大写
+									toLowerCase:true,//转小写
+									currency:true,//货币格式
+									decimal:true,//格式化小数
+									checkedValueMap:{checked:true/1/yes/男,unChecked:false/0/no/女}}//针对单个checkbox时,选中值和反选值格式化  
+									number:true//只允许输入数字，不规定正负以及位数
+									number:{positive:false,intPart:1,decPart:0} //自定义number格式化规则，positive：是否只能输入整数，intPart：整数部分位数，decPart：小数部分位数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>validateRules</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					校验规则,例如: {required:true,
+									email:true,
+									phoneNumber:true,
+									number:true,
+									minLength:6,
+									maxLength:16,
+									minValue:256,
+									maxValue:65535,
+									customExpression:{expression:'正则表达式',message:'提示信息'}}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>fromAssociateObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateIdObject</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fromAssociateCollection</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. autoSelect End .................................................. -->
+
+	<!-- .................................................. autoSelectConfig 
+		Begin .................................................. -->
+	<tag>
+		<name>autoSelectConfig</name>
+		<tag-class>com.vip.lf.taglib.AutoSelectConfigTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				autoSelectConfig要配合autoSelect标签一起使用,以下场景;
+					autoSelectConfig标签例:<k:autoSelectConfig 
+											id="editUserName"
+											displayField="userName,userCode,birthDay" 
+											displayFieldI18n="system.User.userName,system.User.userCode,system.User.birthDay" 
+											queryField="userName,userCode" 
+											sortFields="userName|asc,userCode|desc" 
+											width="450" 
+											displayNum="8" 
+											canNotInput="true" 
+											autoFill="editUserName|{userName},hiddenUserId|{userId}" 
+											hiddenId="hiddenUserId" 
+											whereCondition="userCode='admin' or userName='用户'" 
+											urlPrefix="${ctx}/office"/>,
+											
+					autoSelect标签例:<k:autoSelect property='userName' styleId='editUserName'/>
+									<k:hidden property='userId' styleId='hiddenUserId'/>
+			]]>
+		</description>
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					控件id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>displayField</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					显示字段
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>displayFieldI18n</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					显示字段的国际化key
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>queryField</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询的字段,为空时默认以displayField
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>sortFields</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为排序的字段
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>width</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					总宽度,除以displayField应为整数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>displayNum</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					显示行数,为空时默认10行
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>canNotInput</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					不允许手输入,必须从下列列表中选择一条
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>autoFill</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					填充 到指定的控件;
+					例：autoFill="test1|{address},test2|{address},test3|{address},test4|{address}"				
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>hiddenId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指定隐藏域ID(如：id作为隐藏的value,name作为显示的Text.当Text被清空,value也应该被清空)。
+					如果hiddenId指向的控件在autoSelect初始化时有值，它的值将用作查找显示文本的条件，hiddenId作为字段名。
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>whereCondition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					自定义查询条件,将拼接到where 之后.例:whereCondition = "userCode='admin' or userName='用户'"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>whereConditionFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					自定义查询条件的方法名,将拼接到where 之后.
+					例:
+					whereConditionFunc="whereConditionFunc1"
+					function whereConditionFunc1(){
+						return "user_age = 28";
+						}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					获取数据的URL，默认为urlPrefix + 'autoSelect.action'。
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>urlPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					获取数据的URL前缀，默认为App.ctx。
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>initDisplayUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					获取显示初始数据的URL，默认为urlPrefix + 'list.action'。
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>condition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					作为查询条件的连接符,如下:
+						eq(= 等于),
+						neq(!= 不等于),
+						eqic(= 等于并忽略大小写),
+						gt(> 大于),
+						ge(>= 大于等于),
+						lt(< 小于),
+						le(<= 小于等于),
+						likes(%参数 前模糊),
+						likesic(%参数  前模糊并忽略大小写),
+						likee(参数% 后模糊),
+						likeeic(参数% 后模糊并忽略大小写),
+						likea(%参数% 前后模糊),
+						likeaic(%参数% 前后模糊并忽略大小写),
+						is null(空),
+						is not null(非空),
+						in (in  包含),
+						not in (not in  包含)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterSelectRow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行选中后执行的事件;
+					function afterSelectRow(rowData){
+						//rowData 选中的行数据
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>onlyConfig</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否只生成联想控件的配置,默认false;
+					例：
+						<k:autoSelectConfig 
+							url="${ctx}" 
+							id="editStudentName" 
+							width="400" 
+							queryField="studentNum,studentName,address"
+							displayField="studentNum,studentName,birthday,address" 
+							className="com.wef.demo.entity.Student" 
+							displayFieldI18n="demo.Student.studentNum,demo.Student.studentName,demo.Student.birthday,demo.Student.address" 
+							displayNum="8"
+							canNotInput="true"
+							afterSelectRow="afterSelectRow4Student"
+							onlyConfig="true"
+						/>
+					将生成
+					var idCondig = {className:'com.wef.demo.entity.Student',
+							displayFieldI18n:'demo.Student.studentNum,demo.Student.studentName,
+							demo.Student.birthday,demo.Student.address',
+							queryField:'studentNum,studentName,address',
+							width:'400',
+							displayNum:'8',
+							canNotInput:true,
+							url:'/wef_demo_server',
+							afterSelectRow:afterSelectRow4Student,
+							displayField:'studentNum,studentName,birthday,address'}; 
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>syncClearControls</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					联想控件 同步清理其它的控件的数据,以逗号分割,
+					实际运用应与autoFill 配合使用;
+					例：syncClearControls="id1,id2,id3,id4,id5"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>initProps</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					在表格需要查询带出主或子表数据的时候配置,配置主或子表在当前实体的属性名;
+					initProps = "parent.parentParent,parent2"
+				]]>
+			</description>
+		</attribute>
+
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. autoSelectConfig 
+		End .................................................. -->
+
+	<!-- .................................................. jqgrid Begin .................................................. -->
+	<tag>
+		<name>jqgrid</name>
+		<tag-class>com.vip.lf.taglib.JQGridTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				例：
+					<k:jqgrid 
+					 	jsonReader="{id:'studentId'}"
+					 	colModel="[{name:'studentId',hidden:true},
+					 		{label:'demo.Student.studentNum',name:'studentNum'},
+					 		{label:'demo.Student.studentName',name:'studentName'},
+					 		{label:'demo.Student.birthday',name:'birthday',formatter:'date',formatoptions:{srcformat:'Y-m-d H:i:s',newformat:'Y-m-d'},originalDataType:'date'},
+					 		{label:'demo.Student.address',name:'address'},
+					 		{label:'demo.Student.telphone',name:'telphone'},
+					 		{label:'demo.Student.phone',name:'phone'},
+					 		{label:'demo.Student.gender',name:'gender',formatterValueText:[{value:true,text:'男'},{value:false,text:'女'}]},
+					 		{label:'demo.Student.email',name:'email'},
+					 		{label:'demo.Student.idCard',name:'idCard'},
+					 		{label:'demo.Student.remark',name:'remark'}]"		 		
+						id="tableStudent"
+						searchFormId="searchFormStudent"
+					 	editFormId="editFormStudent"
+						searchBtnId="searchBtnStudent"
+					 	newBtnId="newBtnStudent"
+					 	saveBtnId="saveBtnStudent"
+					 	clearBtnId="clearBtnStudent"
+					 	cancelBtnId="cancelBtnStudent"
+					 	deleteBtnId="deleteBtnStudent"
+					 	saveUrl="${ctx}/user/batchSave.action"
+					 	url="${ctx}/user/list.action"
+					 	/>
+			]]>
+		</description>
+		<!-- 自定义属性 -->
+		<attribute>
+			<name>treeGrid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否为treeGrid
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>treeGridModel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					treeGridModel
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>treedatatype</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					treedatatype
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>treeIcons</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					treeIcons
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>expandColumn</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					ExpandColumn
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>expandColClick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					ExpandColClick
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					jqgrid需要显示在table标签上的id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editWindowDirectSave</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					弹出框口点击确定按钮是否直接提交
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>colModel</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					表格显示列:
+						1.必须有一个数据ID列,一般使用实体ID,并且设置为隐藏不显示该列;
+						2.属性label为国际化的key;
+						3.属性name为显示数据的属性名;
+						4.属性hidden该列显示或隐藏true,false;
+						5.属性formatter数据格式化(暂时指针对日期,配置formatter:'date');
+						6.属性formatoptions数据格式化格式(暂时指针对日期,配置formatoptions:{srcformat:'Y-m-d H:i:s',newformat:'Y-m-d'},srcformat源数据格式类型,newformat显示的数据格式);
+						7.属性formatterValueText文本与值转换格式数组,
+							例:
+								formatterValueText:[{value:true,text:'男'},{value:false,text:'女'}];
+							或
+								定义一个数组对象
+								var valueText = [{value:0,text:'取消'},{value:1,text:'确定'},{value:2,text:'不确定'}],
+								formatterValueText:valueText; 
+						8.属性formatterFunction自定格式化方法,例：formatterFunction:'clazzNameFormatter',实现方法
+							function clazzNameFormatter(cellVal,cellConfig,rowData){
+								if(!$.isEmptyObject(rowData) && !$.isEmptyObject(rowData.clazz)){
+									if(rowData.clazz.clazzName){
+										return rowData.clazz.clazzName;
+									}
+								}
+								return "";
+							}
+						9.动作列,
+							9.1.已经提供了两个"删除","编辑"的动作列
+								{actionType:'delete',name:'delete'},
+								编辑列的三种模式
+		 						9.1.1.{actionType:'edit',name:'edit',actionUrl:'/pages/demo/demo_edit.jsp',tabTitle:'自定义标题',tabId:'customTabId'}
+		 						9.1.2.{actionType:'edit',name:'edit',actionUrl:'/pages/demo/demo_edit.jsp',actionTarget:'self'}
+		 						9.1.3.{actionType:'edit',name:'edit',actionTarget:'openEditWindow'}
+		 						
+							9.2.actionType只允许三种值,"edit","delete","custom";
+							9.3.name动作列的命名,不能重复;
+							9.4.actionTarget动作目标,默认不填是"newTab"(打开新tab),"self"(在当前页打开),"openEditWindow"(打开编辑窗体);
+							9.5.actionUrl动作列提交的Url(actionUrl与actionFunction都填,以actionUrl优先);
+							9.6.actionFunction动作列执行的方法(例：
+									function functionName(rowId){
+										//rowId 行id值
+									}
+								);
+							9.7.actionText动作列显示文本(actionText与actionImg都填,以actionImg优先);
+							9.8.actionImg动作列显示图片路径(例：/images/icon/add.gif);
+							9.4.自定义动作列示例： 
+								方式1.显示文本打开新tab {label:'国际化key',actionText:'文本',actionType:'custom',name:'customName1',actionUrl:'/pages/demo/demo_edit.jsp',tabTitle:'自定义标题',tabId:'customTabId'};
+								方式2.显示文本在当前页打开 {label:'国际化key',actionText:'文本',actionType:'custom',name:'customName2',actionTarget:'self',actionUrl:'/pages/demo/demo_edit.jsp'};
+								方式3.显示文本执行方法 {label:'国际化key',actionText:'文本',actionType:'custom',name:'customName3',actionFunction:'functionName'};
+								
+								方式4.显示图片打开新tab {label:'国际化key',actionImg:'/images/icon/add.gif',actionType:'custom',name:'customName4',actionUrl:'/pages/demo/demo_edit.jsp',tabTitle:'自定义标题',tabId:'customTabId'};
+								方式5.显示图片在当前页打开 {label:'国际化key',actionImg:'/images/icon/add.gif',actionType:'custom',name:'customName5',actionTarget:'self',actionUrl:'/pages/demo/demo_edit.jsp'};
+								方式6.显示图片执行方法 {label:'国际化key',actionImg:'/images/icon/add.gif',actionType:'custom',name:'customName6',actionFunction:'functionName'};
+						10.属性width宽度;
+						11.属性originalDataType原始数据类型:'date','number';
+						12.属性align对齐方式,center/left/right;
+						13.属性classes 指定样式;
+						14.属性resizable 列宽可调整 true/false,默认true;
+						15.属性sortable 是否可排序 true/false,默认true;
+						16.属性editable 激活单元格编辑,可选值：true,false
+						17.属性editrules 校验规则,可选值：required,numbe,minValue,maxValue,email,integer,date,time,url,custom,custom_func
+							例：
+								数值列校验：{editable:true,editrules:{required:true,number:true,minValue:1,maxValue:10000}},
+								日期列校验：{editable:true,editrules:{required:true}},
+								自定义校验：{editable:true,edittype:'textarea',editrules:{custom:true,custom_func:'custom_func4StudentRemark'}}
+								邮件列校验：{editable:true,editrules:{required:true,email:true}},
+						18.属性edittype 激活单元格为编辑状态,默认空;可选值：text,select,textarea
+							例：
+								下拉框列：{formatterValueText:[{value:true,text:'男'},{value:false,text:'女'}],editable:true,editrules:{required:true},edittype:'select',editoptions:{value:'true:男;false:女'}},
+								文本域列：{editable:true,edittype:'textarea',editrules:{custom:true,custom_func:'custom_func4StudentRemark'}}
+						19.属性editoptions 编辑选项
+							例：
+								配置文本域：{editable:true,edittype:'textarea',editoptions:{rows:2,cols:10}}
+								配置下拉框键值对：{editable:true,edittype:'select',editoptions:{value:'true:男;false:女;neutral:不男不女'}},
+						20.属性jsonmap 默认不填时和name一致,定义和json数据的映射字段
+						
+						21.属性excelFormatterFunction，自动导出Excel时用来格式化的方法，如不指定则使用formatterFunction来格式化（如果formatterFunction存在的话）
+							例:
+								function clazzNameFormatter(cellVal,cellConfig,rowData){
+									if(!$.isEmptyObject(rowData) && !$.isEmptyObject(rowData.clazz)){
+										if(rowData.clazz.clazzName){
+											return rowData.clazz.clazzName;
+										}
+									}
+									return "";
+								}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>jsonReader</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					绑定实体的列的唯一标识,一般使用实体ID.
+					例:jsonReader="{id:'userId'}"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>excelFileName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					导出的Excel文件名，默认为excel.xls
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>exportExcelUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					导出的Excel的方法的访问路径。默认为urlPrefix + /exportExcel.action
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>templateExportExcelUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					用模板导出的Excel的方法的访问路径。默认为urlPrefix + /templateExportExcel.action
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>exportExcelBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					导出grid当前数据到Excel的按钮Id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>exportExcelAllBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					导出全部数据到Excel的按钮Id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>templateExportExcelBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					(高级)采用模板导出grid当前数据到Excel的按钮Id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>templateExportExcelAllBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					(高级)采用模板导出全部数据到Excel的按钮Id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>templateFileName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					导出数据的Excel模板，模板须放置在'App.ctx + /export_template/'目录。
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>urlPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					grid对应资源的Controller路径，如App.ctx + '/user/'
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>cancelDataScope</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					取消数据的范围:
+					selection(选中[默认]),all(全部)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveDataScope</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存数据的范围:
+					selection(选中),modified(修改[默认]),all(全部)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据查询URL，默认为 urlPrefix + '/list.action'
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editFormId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑表单form的id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editFormName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑表单form的name(如果多个form映射的是一个对象则使用此属性)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>searchFormId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					查询表单的form的id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>searchFormName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					查询表单名称
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>searchBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					查询按钮的id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>resetBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					重置按钮的id(用于重置编辑表单)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>clearBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					清空按钮id(用于重置搜索表单)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>newBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					新增按钮的id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存按钮id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>cancelBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					取消按钮id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>deleteBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					删除按钮id
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>multiselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否显示多选框,默认为false
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>multiselectWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					多选框的列宽(默认30,必须multiselect=true时生效)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>multiboxonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					只允许点击复选框来多选行,行点击不会进行多选(必须multiselect=true时生效)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>height</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					grid的高度(默认230)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>autowidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据列是否自动设置宽度,默认true;(为true是每列设置width将不生效)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>showPager</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否显示分页栏,默认是true
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>rowList</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					可选行数的列表,默认(10,50,100);例： rowList="100,300,500"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>pageSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					每页显示记录数,默认10条
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>rownumbers</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否显示行号,默认true
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>rownumWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行序号列宽,前提rownumbers=true,默认30
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>initProps</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					在表格需要查询带出主或子表数据的时候配置,配置主或子表在当前实体的属性名;
+					initProps = "parent.parentParent,parent2"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存的URL，默认为 urlPrefix + '/batchSave.action'
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterSelectRow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行选中后执行的事件;
+					function afterSelectRow(rowid, stat){
+						//rowid 选中的行数据id
+						//stat选中状态(true选中,false反选)
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeSelectRowFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行选中前执行的事件;
+					function beforeSelectRowFunc(rowId,event){
+						//rowId 当前点击行的数据ID
+						//event 当前点击行事件对象
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据加载前(当前数据还未填充到表格)执行的事件,
+					//返回false grid将不执行load	
+					function beforeLoad(){
+					
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据加载后执行的事件,此时数据还没填充到grid上,对rowDatas 的修改会影响填充到grid的数据.
+					function afterLoad(rowDatas,gridData){
+						//rowDatas加载到的所有行数据
+						//gridData 表格的其它数据(rowDatas 其实就是 gridData.list)
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeNew</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					执行新增前事件,
+					//返回false 将不执行新增动作	
+					function beforeNew(newRowData){
+					
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterNew</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					执行新增后事件,
+					function afterNew(rowData){
+						// rowData新增后返回的数据
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeSave</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据保存前执行的事件,
+					//返回false grid将不执行保存;
+					function beforeSave(datas){
+						//datas将要保存的所有数据
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterSave</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据保存后执行的事件,
+					function afterSave(result){
+						// result保存成功后返回的结果
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeCancel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据取消前执行的事件,
+					//返回false grid将不执行取消;
+					function beforeCancel(datas){
+						//datas将要取消的所有数据
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterCancel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据取消后执行的事件,
+					function afterCancel(datas){
+						// datas取消的所有数据
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeDelete</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据删除前执行的事件,
+					//返回false grid将不执行删除;
+					function beforeDelete(datas){
+						// datas将要删除的所有数据
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterDelete</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据删除后执行的事件,
+					function afterDelete(result){
+						// result删除成功后返回的结果
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterInsertRowFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					插入数据后执行的事件,
+					function afterInsertRowFunc(rowId,rowData){
+						// rowId 当前插入行的行ID值
+						// rowData 当前要插入的行数据
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforePaging</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					分页前执行的事件,
+					//返回false 将不执行分页动作
+					function beforePaging(){
+					
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeDblClickRow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行双击前事件,
+					function beforeDblClickRow(idVal,rowNum,colNum,event){
+						//idVal行数据id值
+						//rowNum行号
+						//colNum列号
+						//event事件对象
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>enabledLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否激活表格自动加载,默认为true
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>setQueryInfo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					配置QueryInfo的方法,
+					function setQueryInfo(){
+						return {
+							field:[fieldName:'',condition:'eq',fieldValueString:''],
+							entityAlias : "user",
+							whereCondition : "user.userId ='userIdValue'",
+							orderByProps : {userId:"desc",userName:"asc"},
+							groupByProps : ["userId","userName"]
+						};
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>subGridMaps</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					配置子表属性[{"gridId":"tableUser","propName":"user"},{"gridId":"tableRole","propName":"role"}]
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>cellEdit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					激活表格内单元格可编辑,默认false【不可用】
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>pagerPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					分页栏位置,top(上方),bottom(下方),both(上下方)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>newBtnActionConfig</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					新增按钮的动作配置,如果配置此项,以配置动作最优先执行.
+					例:1.newBtnActionConfig="{actionTarget:'self',actionUrl:'/pages/demo/demo.jsp'}",actionTarget=self表示在当前页连接页面;
+						2.newBtnActionConfig="{actionUrl:'/pages/demo/demo.jsp',tabTitle:'标题',tabId:'TabId'}",actionTarget为空表示打开新Tab连接页面,需要配置tabTitle和tabId(必须唯一并且不能和其它tabId重复);
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>useColSpanStyle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					表头分组,是否跨行显示,必须groupHeaders不为空时有效.
+					默认:true;
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>groupHeaders</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					表头分组属性:
+						起始列名 startColumnName,
+						跨列数 numberOfColumns,
+						列头文本 titleText,
+					例：groupHeaders:[ {startColumnName: '列名1', numberOfColumns: 3, titleText: '合并列名1'}, 
+										{startColumnName: '列名2', numberOfColumns: 2, titleText: '合并列名2'} ]
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editWindow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑表单在弹出层上,层ID.例:
+					editWindow="{selector:\"#editWindowUser\",option:{width:300,height:350}}",
+					editWindow="{selector:\"div[id=\'editWindowUser\']\",option:{width:300,height:350}}",
+					editWindow="{selector:\"div[name=\'editWindowUser\']\",option:{width:300,height:350}}"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterCloseEditWindow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					关闭编辑层后事件,例:
+					function afterCloseEditWindow(event,ui){
+						//event 事件对象
+						//ui 当前窗体对象
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterOpenEditWindow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					打开编辑层后事件,例:
+					function afterCloseEditWindow(event,ui){
+						//event 事件对象
+						//ui 当前窗体对象
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterInitForm</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					打开编辑层并且初始化form结束后事件,例:
+					function afterInitForm(event,ui){
+						//event 事件对象
+						//ui 当前窗体对象
+					}
+				]]>
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>selectRowOpenEditWindow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行单击打开编辑层,默认:true;
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>dblClickRowOpenEditWindow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					行双击打开编辑层,默认:false;
+					如果selectRowOpenEditWindow和dblClickRowOpenEditWindow都为true时,默认以后者优先,前者将失效.
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>showColumnChooser</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					显示列选择器,默认:false;
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>groupingView</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					字段分组配置,
+						groupingView = {groupField : ['name'], 		//指定分组字段
+										groupColumnShow : [true], 	//当前字段是否还在列上显示(默认true)
+										groupText : ['<b>{0}</b>'], //分组文本,或其它文本格式例：['<span class='fontCls'>{0}<span>']
+										groupCollapse : false, 		//展开或收缩(默认false)
+										groupSummary : [false], 	//显示概要行,行上数据是否显示,需要在colModel里配置(默认false,)
+										showSummaryOnHide: false, 	//显示概要行,当分组收缩时是否还显示(默认false)
+										groupOrder: ['asc'], 		//排序方式,当groupDataSorted 配置true时才生效(选填,值:asc/desc)
+										groupDataSorted : false }	//是否排序,当true 即使groupOrder不配置,字段默认以asc排序.时(默认false)
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>forceFit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					默认值:false
+					如果设置为true,并且用户改变了列宽度,那么右边临近的列宽度会自动调整以适应grid的整体宽度.
+					这种情况下,是没有水平滚动条的.
+					注意：本选项与shrinkToFit选项不相容.如果shrinkToFit设置为false,那么forceFit的设置将被忽略.
+
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>shrinkToFit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					默认值:true
+					确定初始化时候每列的宽度的算法.如果设置为true,表示每列的宽度按照所有列设定的宽度值的和与grid设定的宽度按比例进行缩放.
+					如果设置为 false,则列宽按照colModel中设定的宽度显示.
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>subGridUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					子表数据查询URL,默认App.ctx+'/common/query.do?method=findByQueryInit'
+				]]>
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>subGridModel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					子表列配置:
+					subGridModel="[{name:['name','code','age','address','email','remark'],
+		 				width:[60,100,120,180,120,200],
+			 			label:['demo.User.name','demo.User.code','demo.User.age','demo.User.address','demo.User.email','demo.User.remark'],
+			 			params:['parentId','parentName']}]"
+			 		name:子表列字段名;
+			 		width:子表列宽;
+			 		label:子表列国际化key;
+			 		params:主表字段,展开主表时将传给子表的"subGridSetQueryInfo"方法;
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>subGridSetQueryInfo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					子表配置QueryInfo的方法,
+					function setQueryInfo(){
+						return {
+							field:[fieldName:'',condition:'eq',fieldValueString:''],
+							entityAlias : "user",
+							whereCondition : "user.userId ='userIdValue'"
+						};
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>subGridJsonReader</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					子表绑定实体的列的唯一标识,一般使用实体ID.
+					例:subGridJsonReader="{id:'userId'}"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>navGridConfig</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					grid 按钮区 展现位置,默认navGridConfig={position:'center'};(left,center,right)
+					要根据recordpos，pagerpos的值进行配置，三者的值不能相同，否则会覆盖
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>pagerpos</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					grid 分页操作按钮组 展现位置,默认pagerpos='center';(left,center,right)
+					要根据navGridConfig，recordpos的值进行配置，三者的值不能相同，否则会覆盖
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>recordpos</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					grid 记录数 展现位置,默认recordpos='right';(left,center,right)
+					要根据navGridConfig，pagerpos的值进行配置，三者的值不能相同，否则会覆盖
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveError</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存出错事件,
+					function saveError(message){
+						//message后台错误信息
+						$.ui.dialog4Error(i18n.message.error,message);
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterEditCellFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑单元格后事件,单元格点击后变成可编辑状态时执行的事件;
+					function afterEditCellFunc(rowId,colName,cellValue,cellRowIndex,cellColIndex){
+						//rowId		ID值
+						//colName	单元格列name
+						//cellValue	单元格值
+						//cellRowIndex	单元格行坐标
+						//cellColIndex	单元格列坐标
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeSearch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					搜索前事件
+					function beforeSearch(){
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterSelectAllFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					全选后事件
+					function afterSelectAllFunc(){
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterGridCompleteFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					表格完成后事件
+					function afterGridCompleteFunc(){
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterSaveCellFunc</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					单元格结束编辑，回复到不可编辑状态后事件
+					function afterSaveCellFunc(rowId,colName,cellValue,cellRowIndex,cellColIndex){
+						//rowId		ID值
+						//colName	单元格列name
+						//cellValue	单元格值
+						//cellRowIndex	单元格行坐标
+						//cellColIndex	单元格列坐标
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>footerrow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					如果设置为true,则会在grid的底部,导航条之上显示一个只有一行的table.
+					列的数量和colModel定义的数量一致.默认false.
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>userDataOnFooter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					如果设置为true,则直接把userData中的数据显示在grid的页脚.(footerrow = true才能看到数据)
+					规则是:如果userData数据包含和colModel中name一样的名字,那么userData的值就显示在该列.
+					否则,什么都不显示.默认false.
+				]]>
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>queryKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					指定查询的sql key,默认为空.
+				]]>
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>extRowStatusEvents</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					extRowStatusEvents,例：
+					extRowStatusEvents="[{'btnId':'btnCancel','btnEvent':'CANCEL','beforeEvent':'beforeConcel','afterEvent':'afterCancel'},{'btnId':'btnAUDIT','btnEvent':'AUDIT'}]"
+				]]>
+			</description>
+		</attribute>
+
+
+		<!-- end自定义属性 -->
+	</tag>
+	<!-- .................................................. jqgrid End .................................................. -->
+
+	<!-- .................................................. customSaveConfig 
+		Begin .................................................. -->
+	<tag>
+		<name>customSaveConfig</name>
+		<tag-class>com.vip.lf.taglib.CustomSaveConfigTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				自定义保存按钮配置信息
+			]]>
+		</description>
+		<!-- 公共属性 -->
+		<attribute>
+			<name>autoLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					是否自动加载
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存按钮ID
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>resetBtnId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					重置按钮ID
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveUrl</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					调用保存的URL，默认为urlPrefix + 'save.action'
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					获取数据的URL，默认为urlPrefix + 'list.action'
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>urlPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					获取数据的URL，默认为App.ctx
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>entityIdField</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					实体的ID属性名
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>entityIdValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					实体的ID属性值
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editFormId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑表单的ID
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>editFormName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					编辑表单的名称
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>subGridMaps</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					子类集合
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>callback</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存完成后回调函数
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>beforeSave</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					数据保存前执行的事件,
+					//返回false 将不执行保存;
+					function beforeSave(data){
+						//data将要保存的所有数据
+						
+						//返回false,后续动作将不执行,默认返回true
+						return true;
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>saveError</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					保存出错事件,
+					function saveError(message){
+						//message后台错误信息
+						$.ui.dialog4Error(i18n.message.error,message);
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>afterProcessing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					//执行数据处理后方法
+					function afterProcessing(data){
+						//data 填充到表单上的数据
+					}
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>initProps</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					在表格需要查询带出主或子表数据的时候配置,配置主或子表在当前实体的属性名;
+					initProps = "parent.parentParent,parent2"
+				]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>updateGridData</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				<![CDATA[
+					如果是从jqGrid打开的编辑页面，当保存完毕时是否自动刷新所修改的行。可选值为：
+					1. none: 不更新
+					2. setChangeRow: 更新所修改的行， 为默认值。
+					3. reloadGrid: 重新加载grid
+				]]>
+			</description>
+		</attribute>
+		<!-- end公共属性 -->
+	</tag>
+	<!-- .................................................. customSaveConfig 
+		End .................................................. -->
+
+	<!-- .................................................. multiSelector Begin 
+		.................................................. -->
+	<tag>
+		<name>multiSelector</name>
+		<tag-class>com.vip.lf.taglib.MultiSelectorTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				
+			]]>
+		</description>
+		<attribute>
+			<name>styleId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				 唯一ID
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				下拉框选择项显示个数个数,最小个数8.
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>selectStyle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>复选控件中的两个select 下拉框的样式</description>
+		</attribute>
+		<attribute>
+			<name>sourceTitleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>复选控件中待选数据框的名称</description>
+		</attribute>
+		<attribute>
+			<name>destiTitleKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>复选控件中已选数据框的名称</description>
+		</attribute>
+	</tag>
+	<!-- .................................................. multiSelector End 
+		.................................................. -->
+
+	<!-- .................................................. zTree Begin .................................................. -->
+	<tag>
+		<name>zTree</name>
+		<tag-class>com.vip.lf.taglib.ZTreeTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			<![CDATA[
+				
+			]]>
+		</description>
+		<attribute>
+			<name>id</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				zTree 唯一ID
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>lazyInit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				是否在初始化时不实例化树,为true时不实例化,默认为false,当树和input一起使用时必须设置该属性为true
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>async</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				异步加载属性配置,用法如下:
+				async: {
+						 enable: true,  是否开启异步加载,默认true
+						 isOpen:false  	是否展开节点,默认为false
+						 url: '${ctx}/system/office.do?method=queryTreeData'  异步加载地址
+						 filterDataAfterAsync:Function(treeId, parentNode, childNodes)  用于异步加载完成后对数据的过滤
+						 treeId：树id
+						 parentNode：父节点
+						 childNodes：所有子节点
+				}
+				
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>callback</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				回调方法配置,用法如下:
+				callback: {
+							1.	beforeLoad:Function(treeId, treeNode)用于捕获异步加载之前的事件回调函数,zTree 根据返回值确定是否允许进行异步加载
+								treeId：对应 zTree 的 treeId,便于用户操控
+								treeNode：进行异步加载的父节点 JSON 数据对象针对根进行异步加载时,treeNode = null
+								返回值是 true / false
+								如果返回 false,zTree 将不进行异步加载,也无法触发 onAsyncSuccess / onAsyncError 事件回调函数
+							2.	beforeCheckNode：Function(treeId, treeNode) 用于捕获勾选或 取消勾选 之前的事件回调函数,并且根据返回值确定是否允许 勾选 或 取消勾选
+								treeId：对应 zTree 的 treeId
+								treeNode：进行 勾选 或 取消勾选 的节点 JSON 数据对象返回值是 true / false
+								如果返回 false,将不会改变勾选状态,并且无法触发 onCheck 事件回调函数
+							3.	beforeClickNode:Function(treeId, treeNode, clickFlag) 用于捕获单击节点之前的事件回调函数,并且根据返回值确定是否允许单击操作
+								treeId: 对应 zTree 的 treeId
+								treeNode：被单击的节点 JSON 数据对象
+								clickFlag: 节点被点击后的选中操作类型,详细看下表:
+								clickFlag	selectedMulti	autoCancelSelected&&event.ctrlKey	isSelected	选中操作
+								1				true				false							false	普通选中
+								1				true				false							true	普通选中
+								2				true				true							false	追加选中
+								0				true				true							true	取消选中
+								1				false				false							false	普通选中
+								1				false				false							true	普通选中
+								1				false				true							false	普通选中
+								0				false				true							true	取消选中
+								返回值是 true / false
+								如果返回 false,zTree 将不会选中节点,也无法触发 onClick 事件回调函数
+							4.	beforeDblNode：Function(treeId, treeNode) 用于捕获 zTree 上鼠标双击之前的事件回调函数,并且根据返回值确定触发 onDblClick 事件回调函数
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标双击时所在节点的 JSON 数据对象
+								返回值是 true / false
+								如果返回 false,将仅仅无法触发 onDblClick 事件回调函数,对其他操作无任何影响
+							5.	beforeMouseDown：Function(treeId, treeNode) 用于捕获 zTree 上鼠标按键按下之前的事件回调函数,并且根据返回值确定触发 onMouseDown 事件回调函数
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标按键按下时所在节点的 JSON 数据对象
+								回值是 true / false
+								如果返回 false,将仅仅无法触发 onMouseDown 事件回调函数,对其他操作无任何影响
+							6.	beforeMouseUp：Function(treeId, treeNode) 用于捕获 zTree 上鼠标按键松开之前的事件回调函数,并且根据返回值确定触发 onMouseUp 事件回调函数
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标按键松开时所在节点的 JSON 数据对象
+								返回值是 true / false
+								如果返回 false,将仅仅无法触发 onMouseUp 事件回调函数,对其他操作无任何影响
+							7.	onLoadError：Function(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) 用于捕获异步加载出现异常错误的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：进行异步加载的父节点 JSON 数据对象
+								XMLHttpRequest: 标准 XMLHttpRequest 对象:
+								textStatus: 请求状态：success,error
+								errorThrown: errorThrown 只有当异常发生时才会被传递
+							8.	afterLoad：Function(event, treeId, treeNode, msg) 用于捕获异步加载正常结束的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：进行异步加载的父节点 JSON 数据对象
+								msg：异步获取的节点数据字符串,主要便于用户调试使用
+								
+								afterCheck：Function(event, treeId, treeNode) 用于捕获 checkbox / radio 被勾选 或 取消勾选的事件回调函数event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：被勾选 或 取消勾选的节点 JSON 数据对象
+							9.	afterClick:Function(event,treeId,treeNode, clickFlag) 用于捕获节点被点击的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：被点击的节点 JSON 数据对象
+								clickFlag：节点被点击后的选中操作类型,详细看上表
+							10.	afterDblClick：Function(event, treeId, treeNode) 用于捕获 zTree 上鼠标双击之后的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标双击时所在节点的 JSON 数据对象
+							11.	onMouseDown：Function(event, treeId, treeNode) 用于捕获 zTree 上鼠标按键按下后的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标按键按下时所在节点的 JSON 数据对象
+							12.onMouseUp：Function(event, treeId, treeNode) 用于捕获 zTree 上鼠标按键松开后的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：鼠标按键松开时所在节点的 JSON 数据对象
+							13.	beforeExpandNode：Function(Function(treeId, treeNode)) 用于捕获 zTree 上鼠标按键按下后的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：要展开的父节点 JSON 数据对象
+							14. afterExpand：Function(event, treeId, treeNode) 用于捕获 zTree 上鼠标按键松开后的事件回调函数
+								event：标准的 js event 对象
+								treeId：对应 zTree 的 treeId
+								treeNode：被展开的节点 JSON 数据对象
+
+				}
+				
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>check</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				选中反选属性配置,用法如下：
+					check: {
+							enable: true  是否开启checkbox
+							chkStyle:"checkbox"
+							hkboxType: 勾选 checkbox 对于父子节点的关联关系
+								Y 属性定义 checkbox 被勾选后的情况; 
+								N 属性定义 checkbox 取消勾选后的情况; 
+								"p" 表示操作会影响父级节点; 
+								"s" 表示操作会影响子级节点。默认{ "Y": "ps", "N": "ps" }}
+							
+					}
+				
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>data</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				数据属性配置,暂不可用
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>edit</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				编辑属性配置,暂不可用
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>select</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				下拉属性,暂不可用
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>view</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				外观属性参数,暂不可用
+			]]>
+			</description>
+		</attribute>
+	</tag>
+	<!-- .................................................. zTree End .................................................. -->
+
+</taglib>    
